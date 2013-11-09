@@ -1670,6 +1670,10 @@ XMLError XMLDocument::Parse( const char* p, size_t len )
     DeleteChildren();
     InitDocument();
 
+    if ( len == 0 ) {
+        SetError( XML_ERROR_EMPTY_DOCUMENT, 0, 0 );
+        return _errorID;
+    }
     if ( !p || !*p ) {
         SetError( XML_ERROR_EMPTY_DOCUMENT, 0, 0 );
         return _errorID;
